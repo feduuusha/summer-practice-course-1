@@ -6,17 +6,22 @@ package ru.itis.shop.users.models;
  * @author Marsel Sidikov (AIT TR)
  */
 public class User {
-
-    private final Integer id;
+    private static int serialId = 1;
+    private Integer id;
     private final String name;
     private final String email;
     private final String password;
 
     public User(Integer id, String name, String email, String password) {
+        this(name, email, password);
         this.id = id;
+    }
+
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.id = serialId++;
     }
 
     public Integer getId() {

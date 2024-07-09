@@ -5,7 +5,11 @@ import ru.itis.shop.users.repositories.UsersRepository;
 import ru.itis.shop.users.repositories.impl.UsersRepositoryJdbcImpl;
 import ru.itis.shop.users.services.UsersService;
 import ru.itis.shop.users.validators.EmailValidator;
-import ru.itis.shop.users.validators.SimpleEmailValidator;
+import ru.itis.shop.users.validators.NameValidator;
+import ru.itis.shop.users.validators.PasswordValidator;
+import ru.itis.shop.users.validators.impl.SimpleEmailValidator;
+import ru.itis.shop.users.validators.impl.SimpleNameValidator;
+import ru.itis.shop.users.validators.impl.SimplePasswordValidator;
 import ru.itis.shop.util.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -25,7 +29,9 @@ public class Main {
 
         UsersRepository usersRepository = new UsersRepositoryJdbcImpl(dataSource);
         EmailValidator emailValidator = new SimpleEmailValidator();
-        UsersService usersService = new UsersService(usersRepository, emailValidator);
+        PasswordValidator passwordValidator = new SimplePasswordValidator();
+        NameValidator nameValidator = new SimpleNameValidator();
+        UsersService usersService = new UsersService(usersRepository, emailValidator, nameValidator, passwordValidator);
         UsersUIConsole ui = new UsersUIConsole(usersService);
         ui.printRegistrationMenu();
     }

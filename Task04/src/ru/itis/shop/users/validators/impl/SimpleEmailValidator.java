@@ -1,4 +1,6 @@
-package ru.itis.shop.users.validators;
+package ru.itis.shop.users.validators.impl;
+
+import ru.itis.shop.users.validators.EmailValidator;
 
 /**
  * Shop
